@@ -2,9 +2,6 @@
 <head>
 <link href="./bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="./style.css" rel="stylesheet" id="bootstrap-css">
-<script src="./bootstrap.min.js"></script>
-<script src="./jquery.min.js"></script>
-<script src="./app.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
@@ -16,7 +13,21 @@
 		<div class="button maximize"></div></div>
 		<div class="title">Chat</div>
 	</div>
-	<ul class="messages">
+	<ul class="messages" id="message_box">
+		<div class="message_template">
+			<li  class='message'>
+			<div class="avatar"></div>
+			<div class="text_wrapper"><div class="text">
+			</div>
+			</div>
+			</li>
+		</div>
+		<li  class='message' v-for="message in chat_messages" v-bind:class="[appearedClass,message.isUserMessage?userMessageClass:botMessageClass]">
+		<div class="avatar"></div>
+		<div class="text_wrapper"><div class="text">{{message.text}}
+		</div>
+		</div>
+		</li>
 	</ul>
 	<div class="bottom_wrapper clearfix">
 		<div class="message_input_wrapper">
@@ -28,13 +39,9 @@
 		</div>
 	</div>
 </div>
-<div class="message_template">
-<li class="message">
-<div class="avatar"></div>
-<div class="text_wrapper"><div class="text">
-</div>
-</div>
-</li>
-</div>
+<script src="./vue.js"></script>
+<script src="./bootstrap.min.js"></script>
+<script src="./jquery.min.js"></script>
+<script src="./app.js"></script>
 </body>
 </html>

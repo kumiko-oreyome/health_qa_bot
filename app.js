@@ -1,3 +1,22 @@
+
+
+var app = new Vue({
+  el: '#message_box',
+  data: {chat_messages:[{text:'1234',isUserMessage:true},{text:'wrqr',isUserMessage:false}],
+		 userMessageClass: 'left',
+		 botMessageClass: 'right',
+		 appearedClass:'appeared'
+
+       }
+});
+var turn_user = false;
+
+
+
+
+
+
+
 (function () {
     var Message;
     Message = function (arg) {
@@ -46,7 +65,7 @@
                 return sendMessage(getMessageText());
             }
         });
-        sendMessage("法克");
+        //sendMessage("法克");
  
     });
 }.call(this));
