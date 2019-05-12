@@ -36,7 +36,30 @@ if (e.which === 13) {
 
 
 
-
+function generate_responses(question){
+	var corpus = [
+		{question:'糖尿病吃什麼',answer:'糖尿病吃XXX',triggers:['糖尿病','吃']},
+		{question:'高血壓能喝咖啡嗎',answer:'高血壓可不可以喝咖啡的回答',triggers:['高血壓','咖啡']},
+	];
+	var response_obj = {};
+	for(let  obj of corpus){
+		let match_flag = false;
+		for(let w of obj.triggers){
+			if(question.search(w)>=0){
+				match_flag = true;
+			}
+		}
+		if(match_flag){
+			response_obj = obj;
+			break;
+		}
+	}
+	if($.isEmptyObject(response_obj)){
+		response_obj =  corpus[Math.floor(Math.random() * corpus.length)];
+	}
+	
+	return response_obj;
+}
 
 
 
