@@ -1,7 +1,7 @@
 var turn_user = true;
 var app = new Vue({
   el: '#message_box',
-  data: {chat_messages:[{id:0,text:'Hello!',isUserMessage:false}],
+  data: {chat_messages:[{id:0,text:'你好!',isUserMessage:false}],
 		 userMessageClass: 'left',
 		 botMessageClass: 'right',
 		 appearedClass:'appeared'
@@ -19,8 +19,13 @@ var kb = new Vue({
 	methods: {
 	send: function (event) {
 		var inp = this.$refs.inp;
-		sendMessage(true,inp.value);
+		var q = inp.value;
+		sendMessage(true,q);
 		inp.value = '';
+		var response = generate_responses(q);
+		
+		setTimeout(function(){sendMessage(true,response.answer)},1000);
+		
 	}
 }
   
@@ -65,7 +70,7 @@ function generate_responses(question){
 $(function(){
 	$('#clear').on('click',function(){
 		turn_user = true;
-		app.chat_messages=[{id:0,text:'Hello!',isUserMessage:false}];
+		app.chat_messages=[{id:0,text:'你好!',isUserMessage:false}];
 		});
 }
 );
