@@ -13,27 +13,26 @@ var app = new Vue({
     }
 });
 
+var kb = new Vue({
+  el: '#kb',
+  data: {},
+	methods: {
+	send: function (event) {
+		var inp = this.$refs.inp;
+		sendMessage(true,inp.value);
+		inp.value = '';
+	}
+}
+  
+});
+
 function sendMessage(change_turn,_text){
 	app.chat_messages.push({id:app.chat_messages.length,text:_text,isUserMessage:turn_user});
 	if(change_turn){
 		turn_user=!turn_user;
 	}
-  } 
+ } 
   
-function getMessageText() {
-	var $message_input;
-	$message_input = $('.message_input');
-	return $message_input.val();
-};
-$('.send_message').click(function (e) {
-	return sendMessage(true,getMessageText());
-});
-$('.message_input').keyup(function (e) {
-if (e.which === 13) {
-	return sendMessage(true,getMessageText());
-}
-});
-
 
 
 function generate_responses(question){

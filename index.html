@@ -33,13 +33,13 @@
 			</li>
 		</transition-group>
 	</ul>
-	<div class="bottom_wrapper clearfix">
+	<div class="bottom_wrapper clearfix" id="kb">
 		<div class="message_input_wrapper">
-			<input class="message_input" placeholder="Type your message here..." />
+			<input class="message_input" placeholder="關於健康的問題..." v-on:keyup.enter="send" ref="inp"/>
 		</div>
 		<div class="send_message">
 		<div class="icon"></div>
-		<div class="text">Send</div>
+		<div class="text" v-on:click="send">Send</div>
 		</div>
 	</div>
 </div>
