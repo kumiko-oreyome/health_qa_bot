@@ -22,12 +22,14 @@
 			</div>
 			</li>
 		</div>
-		<li  class='message' v-for="message in chat_messages" v-bind:class="[appearedClass,message.isUserMessage?userMessageClass:botMessageClass]">
-		<div class="avatar"></div>
-		<div class="text_wrapper"><div class="text">{{message.text}}
-		</div>
-		</div>
-		</li>
+		<transition-group name="fadein" tag="ul">
+			<li  class='message' v-for="(message,key,index) in chat_messages" v-bind:class="[appearedClass,message.isUserMessage?userMessageClass:botMessageClass]" v-bind:key="key">
+			<div class="avatar"></div>
+			<div class="text_wrapper"><div class="text">{{message.text}}
+			</div>
+			</div>
+			</li>
+		</transition-group>
 	</ul>
 	<div class="bottom_wrapper clearfix">
 		<div class="message_input_wrapper">

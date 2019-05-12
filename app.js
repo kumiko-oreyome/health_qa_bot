@@ -1,15 +1,41 @@
-
-
+var turn_user = true;
 var app = new Vue({
   el: '#message_box',
-  data: {chat_messages:[{text:'1234',isUserMessage:true},{text:'wrqr',isUserMessage:false}],
+  data: {chat_messages:[{id:0,text:'Hello!',isUserMessage:false}],
 		 userMessageClass: 'left',
 		 botMessageClass: 'right',
 		 appearedClass:'appeared'
 
-       }
+       },
+  updated(){     
+		var $messages = $(this.$el);
+		$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+    }
 });
-var turn_user = false;
+
+function sendMessage(change_turn,_text){
+	app.chat_messages.push({id:app.chat_messages.length,text:_text,isUserMessage:turn_user});
+	if(change_turn){
+		turn_user=!turn_user;
+	}
+  } 
+  
+function getMessageText() {
+	var $message_input;
+	$message_input = $('.message_input');
+	return $message_input.val();
+};
+$('.send_message').click(function (e) {
+	return sendMessage(true,getMessageText());
+});
+$('.message_input').keyup(function (e) {
+if (e.which === 13) {
+	return sendMessage(true,getMessageText());
+}
+});
+
+
+
 
 
 
@@ -57,6 +83,7 @@ var turn_user = false;
             message.draw();
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
+		/*
         $('.send_message').click(function (e) {
             return sendMessage(getMessageText());
         });
@@ -65,6 +92,7 @@ var turn_user = false;
                 return sendMessage(getMessageText());
             }
         });
+		*/
         //sendMessage("法克");
  
     });
