@@ -20,11 +20,16 @@ var kb = new Vue({
 	send: function (event) {
 		var inp = this.$refs.inp;
 		var q = inp.value;
+		if(q.trim().length == 0){
+			inp.value = '';
+			return ;
+		}
+		console.log('1234');
+		console.log(q);
 		sendMessage(true,q);
 		inp.value = '';
 		var response = generate_responses(q);
-		
-		setTimeout(function(){sendMessage(true,response.answer)},1000);
+		setTimeout(function(){sendMessage(true,response.answer)},750);
 		
 	}
 }
@@ -65,14 +70,5 @@ function generate_responses(question){
 	return response_obj;
 }
 
-
-
-$(function(){
-	$('#clear').on('click',function(){
-		turn_user = true;
-		app.chat_messages=[{id:0,text:'你好!',isUserMessage:false}];
-		});
-}
-);
 
 
