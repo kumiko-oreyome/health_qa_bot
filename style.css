@@ -138,6 +138,7 @@ body {
 .messages .message .text_wrapper .text {
   font-size: 18px;
   font-weight: 300;
+  white-space: pre-line;
 }
 
 .bottom_wrapper {
