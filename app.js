@@ -34,6 +34,17 @@ var kb = new Vue({
   
 });
 
+var clear =  new Vue({
+  el: '#clear',
+  data: {},
+	methods: {
+	clear: function (event) {
+		app.chat_messages = [{id:0,text:'你好!',isUserMessage:false}];
+	}
+}
+  
+});
+
 function sendMessage(isUserMessage,_text){
 	app.chat_messages.push({id:app.chat_messages.length,text:_text,isUserMessage:isUserMessage});
  } 
