@@ -45,10 +45,32 @@ var clear =  new Vue({
   
 });
 
+var speech =  new Vue({
+  el: '#speech',
+  data: {},
+	methods: {
+	speech: function (event) {
+		//console.log('1234');
+		if(typeof android !=='undefined'){
+			android.speechRecognition();
+		}else{
+			console.log('undefined android gg');
+		}
+	}
+}
+});
+
 function sendMessage(isUserMessage,_text){
 	app.chat_messages.push({id:app.chat_messages.length,text:_text,isUserMessage:isUserMessage});
  } 
   
+function receiveFinalMessageFromAndroid(_text){
+    sendMessage(true,_text);
+ } 
+
+ function receivePartialMessageFromAndroid(_text){
+    android.speechRecognition();
+ } 
 
 
 function generate_responses(question){
