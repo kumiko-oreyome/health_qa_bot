@@ -35,7 +35,7 @@
 	</ul>
 	<div class="bottom_wrapper clearfix" id="kb">
 		<div class="message_input_wrapper">
-			<input class="message_input" placeholder="關於健康的問題..." v-on:keyup.enter="send" ref="inp"/>
+			<input class="message_input" placeholder="關於健康的問題..." v-on:keyup.enter="send" ref="inp" v-model="userSays"/>
 		</div>
 		<div class="send_message" v-on:click="send">
 		<div class="icon"></div>
