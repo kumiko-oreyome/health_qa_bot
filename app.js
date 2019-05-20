@@ -64,11 +64,14 @@ function sendMessage(isUserMessage,_text){
  } 
   
 function receiveFinalMessageFromAndroid(_text){
-    sendMessage(true,_text);
+    kb.userSays = _text;
+    kb.send();
  } 
 
  function receivePartialMessageFromAndroid(_text){
-    return;
+    if(_text.length > 0 ){
+        kb.userSays = _text;
+    }
  } 
 
 
